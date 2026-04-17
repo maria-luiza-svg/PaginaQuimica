@@ -1,18 +1,51 @@
 function calcular() {
-    const pressao = parseFloat(document.getElementById('pressao').value);
-    const mol = parseFloat(document.getElementById('mol').value);
-    const temperatura = parseFloat(document.getElementById('temperatura').value);
-    const gases = 0.082; // Constante R (L·atm/(mol·K))
+    const P = parseFloat(document.getElementById('pressao').value);
+    const V = parseFloat(document.getElementById('volume').value);
+    const n = parseFloat(document.getElementById('mol').value);
+    const T = parseFloat(document.getElementById('temperatura').value);
 
-    if (isNaN(pressao) || isNaN(mol) || isNaN(temperatura) || pressao <= 0 || mol <= 0 || temperatura <= 0) {
-        document.getElementById('resultado').innerHTML = 'Erro: Insira valores válidos e positivos!';
-        document.getElementById('resultado').style.backgroundColor = '#ffe6e6';
+    const R = 0.082;
+
+    let faltando = "";
+
+    if (isNaN(P)) {
+        faltando = "P";
+    } else if (isNaN(V)) {
+        faltando = "V";
+    } else if (isNaN(n)) {
+        faltando = "n";
+    } else if (isNaN(T)) {
+        faltando = "T";
+    } else {
+        document.getElementById('resultado').innerHTML = "Deixe um campo vazio!";
         return;
     }
 
-    const calculo = (mol * gases * temperatura) / pressao; // V = (nRT) / P
+    let resultado = "";
 
-    document.getElementById('resultado').innerHTML = "O volume do gás é: <strong>${calculo.toFixed(2)}";
-    document.getElementById('resultado').style.backgroundColor = '#e8f5e8';
-    console.log("Cálculo realizado:", calculo);
+    switch (faltando) {
+        case "V":
+            resultado = (n * R * T) / P;
+            document.getElementById('resultado').innerHTML =
+                "R = 0.082 L·atm/(mol·K)<br>Volume (V) = " + resultado.toFixed(2) + " L";
+            break;
+
+        case "P":
+            resultado = (n * R * T) / V;
+            document.getElementById('resultado').innerHTML =
+                "R = 0.082 L·atm/(mol·K)<br>Pressão (P) = " + resultado.toFixed(2) + " atm";
+            break;
+
+        case "n":
+            resultado = (P * V) / (R * T);
+            document.getElementById('resultado').innerHTML =
+                "R = 0.082 L·atm/(mol·K)<br>Mols (n) = " + resultado.toFixed(2) + " mol";
+            break;
+
+        case "T":
+            resultado = (P * V) / (n * R);
+            document.getElementById('resultado').innerHTML =
+                "R = 0.082 L·atm/(mol·K)<br>Temperatura (T) = " + resultado.toFixed(2) + " K";
+            break;
+    }
 }
