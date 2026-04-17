@@ -2,26 +2,33 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Gás Ideal</title>
 </head>
 <body>
-    <h1>Lei dos Gás Ideais</h1>
-    <p>Calcula o <strong>volume (V)</strong> em Litros.</p>
+
+    <h1>Lei dos Gases Ideais</h1>
+
     
-    <label for="pressao">Pressão (atm):</label>
-    <input type="number" id="pressao" placeholder="Insira a pressão (atm)...">
-    
-    <label for="mol">Quantidade de mols (n):</label>
-    <input type="number" id="mol" placeholder="Insira n (mol)...">
-    
-    <label for="temperatura">Temperatura (K):</label>
-    <input type="number" id="temperatura" placeholder="Insira T (K)...">
-    
-    <button onclick="calcular()">Calcular Volume</button>
-    
-    <div id="resultado">Resultado</div>
+    <p><strong>R = 0.082 L·atm/(mol·K)</strong></p>
+    <p>Preencha 3 valores e deixe 1 vazio.</p>
+
+    <label>Pressão (atm):</label>
+    <input type="number" id="pressao"><br><br>
+
+    <label>Volume (L):</label>
+    <input type="number" id="volume"><br><br>
+
+    <label>Mols (n):</label>
+    <input type="number" id="mol"><br><br>
+
+    <label>Temperatura (K):</label>
+    <input type="number" id="temperatura"><br><br>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <h3 id="resultado">Resultado</h3>
 
     <script src="script.js"></script>
+
 </body>
 </html>
